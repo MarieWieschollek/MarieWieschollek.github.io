@@ -5,7 +5,13 @@ p {
   h1 {
     color: maroon;
   }
+  
   .title {
-    color:teal;
-    
+    color: teal;
   }
+  
+  .uppercase {
+    text-transform: uppercase;
+  }
+  
+  
