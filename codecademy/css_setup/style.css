@@ -9,7 +9,9 @@ p {
   h2.destination {
     font-family: cursive;
   }
-  
+  h5 {
+    color: rebeccapurple;
+  }
   .title {
     color: teal;
   }
