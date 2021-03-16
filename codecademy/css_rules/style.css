@@ -11,7 +11,7 @@ body {
   
   h1 {
     font-family:Georgia;
-    color: #FFF;
+    color: #FFF !important;
     font-size: 2em;
     padding-top: 100px;
     width: 100%;
