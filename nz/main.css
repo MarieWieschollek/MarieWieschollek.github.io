@@ -47,5 +47,14 @@ body {
   #map {
   height: 360px;
   width: 100%;
-  border: border: 1px solid grey;
+  border: 1px solid grey;
+}
+main ul {
+    list-style-type: circle;
+}
+main.next {
+    float: right;
+}
+main.back {
+    float: left;
 }
