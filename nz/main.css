@@ -1,7 +1,7 @@
 body {
     max-width: 1280px;
     margin: auto;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Open Sans', sans-serif;
   }
   header{
     text-align: center;
@@ -36,6 +36,7 @@ body {
   }
   main p {
     text-align: justify;
+    font-family: 'Roboto Condensed', sans-serif;
   }
   main figure {
     margin-left: 0;
