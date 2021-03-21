@@ -86,14 +86,17 @@ footer {
 }
 
 @media screen and (max-width: 900px) {
+    
   main {
-    max-width: 90%;
+      max-width: 90%;
+  }
+  figure img {
+      width: 100%;
   }
 }
 
 @media screen and (max-width: 1280px) {
-
   header img.banner {
-    width: 100vw;
+      width: 100vw;
   }
 }
