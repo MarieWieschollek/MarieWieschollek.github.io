@@ -53,10 +53,11 @@ body {
 main ul {
     list-style-type: circle;
 }
-main.next {
+
+footer.next {
     float: right;
 }
-main.back {
+footer.back {
     float: left;
 }
 footer {
