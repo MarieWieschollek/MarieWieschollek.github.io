@@ -22,6 +22,10 @@ let nav = document.querySelector("#navigation");
 console.log(nav);
 
 console.log(ROUTE);
+ROUTE.sort((stop1, stop2) =>{
+    return stop.nr > stop2.nr
+});
+
 for (let entry of ROUTE) {
     console.log(entry);
 
