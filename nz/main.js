@@ -18,6 +18,8 @@ const map = L.map("map", {
      ]
 } );
 
+console.log(ROUTE);
+
 let mrk = L.marker([ stop.lat, stop.lng ]).addTo(map);
 mrk.bindPopup(`
 <h4>Stop ${stop.nr}: ${stop.name} </h4>
