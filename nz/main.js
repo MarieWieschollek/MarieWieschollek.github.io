@@ -7,4 +7,6 @@ const map = L.map("map", {
      ]
 } );
 
+let mark = L.marker([ -45.031111, 168.6625 ]).addTo(map);
+
 console.log(document.querySelector("#map"));
