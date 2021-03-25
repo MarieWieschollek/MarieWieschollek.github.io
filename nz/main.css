@@ -65,11 +65,11 @@ main ul {
   list-style-type: circle;
 }
 
-footer.next {
+footer .next {
   float: right;
 }
 
-footer.back {
+footer .back {
   float: left;
 }
 
