@@ -11,8 +11,8 @@ wikipedia: "https://en.wikipedia.org/wiki/Queenstown,_New_Zealand",
 
 
 const map = L.map("map", { 
-    center: [ stop.lat, stop.lng ],
-    zoom: 13,
+    //center: [ stop.lat, stop.lng ],
+    //zoom: 13,
     layers: [ 
         L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png")
      ]
@@ -30,6 +30,7 @@ mrk.bindPopup(`
 `);
 
 if(entry.nr == 12) {
+    map.setView([ stop.lat, stop.lng ], 13);
     mrk.openPopup();
 }}
 
