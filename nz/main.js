@@ -47,12 +47,11 @@ if(entry.nr == 12) {
 }}
 
 nav.onchange = (evt) => {
-    selected = evt.target.selectedIndex;
-    let option = evt.target.options;
-
-let username = options[ selected ].value;
-let link = `https://${username}.github.io/nz/index.html`;
-console.log(value);
+    let selected = evt.target.selectedIndex;
+    let options = evt.target.options;
+    let username =options[selected].value;
+    let link = `https://${username}.github.io/nz/index.html`;
+    console.log(username, link);
 };
 
 console.log(document.querySelector("#map"));
