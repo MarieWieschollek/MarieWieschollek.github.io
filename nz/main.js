@@ -46,6 +46,7 @@ if(entry.nr == 12) {
     mrk.openPopup();
 }}
 
+nav.options.selectedIndex = 12 - 1;
 nav.onchange = (evt) => {
     let selected = evt.target.selectedIndex;
     let options = evt.target.options;
