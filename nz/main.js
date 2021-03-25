@@ -46,7 +46,14 @@ if(entry.nr == 12) {
     mrk.openPopup();
 }}
 
+nav.onchange = (evt) => {
+    selected = evt.target.selectedIndex;
+    let option = evt.target.options;
 
+let username = options[ selected ].value;
+let link = `https://${username}.github.io/nz/index.html`;
+console.log(value);
+};
 
 console.log(document.querySelector("#map"));
 
