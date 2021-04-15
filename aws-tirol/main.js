@@ -23,7 +23,11 @@ let awsUrl = 'https://wiski.tirol.gv.at/lawine/produkte/ogd.geojson';
 
 let awsLayer = L.featureGroup();
 layerControl.addOverlay(awsLayer, "Wetterstationen Tirol");
-awsLayer.addTo(map);
+// awsLayer.addTo(map);
+let snowLayer = L.featureGroup();
+layerControl.addOverlay(snowLayer, "Schneehöhen");
+snowLayer.addTo(map);
+
 
 fetch(awsUrl)
     .then(response => response.json())
@@ -39,16 +43,28 @@ fetch(awsUrl)
             marker.bindPopup(`
             <h3>${station.properties.name}</h3>
             <ul>
-            <li>Datum: ${formattedDate.toLocaleString("de")}</li>
-            <li>Seehöhe: ${station.geometry.coordinates[2]} m</li>
-            <li>Temperatur: ${station.properties.LT} C</li>
-            <li>Schneehöhe: ${station.properties.HS || '?'} cm</li>
-            <li>Windgeschwindigkeit: ${station.properties.WG || '?'} km/h</li>
-            <li>Windgeschwindrichtung: ${station.properties.WR || '?'}</li>
+              <li>Datum: ${formattedDate.toLocaleString("de")}</li>
+              <li>Seehöhe: ${station.geometry.coordinates[2]} m</li>
+              <li>Temperatur: ${station.properties.LT} C</li>
+              <li>Schneehöhe: ${station.properties.HS || '?'} cm</li>
+              <li>Windgeschwindigkeit: ${station.properties.WG || '?'} km/h</li>
+              <li>Windgeschwindrichtung: ${station.properties.WR || '?'}</li>
             </ul>
-            <a href="https://wiski.tirol.gv.at/lawine/grafiken/1100/standard/tag/${station.properties.plot}.png">Grafik</a>
+            <a target="_blank" href="https://wiski.tirol.gv.at/lawine/grafiken/1100/standard/tag/${station.properties.plot}.png">Grafik</a>
             `);
             marker.addTo(awsLayer);
+            if (station.properties.HS) {
+                let snowIcon = L.divIcon({
+                    html: `<div class="snow-label">${station.properties.HS}</div>`
+                })
+                let snowMarker = L.marker([
+                    station.geometry.coordinates[1],
+                    station.geometry.coordinates[0]
+                ], {
+                    icon: snowIcon
+                });
+                snowMarker.addTo(snowLayer);
+            }
         }
         // set map view to all stations
         map.fitBounds(awsLayer.getBounds());
