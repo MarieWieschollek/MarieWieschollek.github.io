@@ -76,7 +76,7 @@ fetch(awsUrl)
                 snowMarker.addTo(snowLayer);
             }
         }
-        marker.addTo(awsLayer);
+    
         if (station.properties.WG) {
             let highlightClass = '';
             if (station.properties.WG > 5) {
