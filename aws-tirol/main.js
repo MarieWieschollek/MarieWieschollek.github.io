@@ -54,8 +54,15 @@ fetch(awsUrl)
             `);
             marker.addTo(awsLayer);
             if (station.properties.HS) {
+                let highlightClass = '';
+                if (station.properties.HS > 100) {
+                    highlightClass = 'snow-100';
+                }
+                if (station.properties.HS > 200) {
+                    highlightClass = 'snow-200';
+                }
                 let snowIcon = L.divIcon({
-                    html: `<div class="snow-label">${station.properties.HS}</div>`
+                    html: `<div class="snow-label ${highlightClass}">${station.properties.HS}</div>`
                 })
                 let snowMarker = L.marker([
                     station.geometry.coordinates[1],
