@@ -25,10 +25,10 @@ let awsLayer = L.featureGroup();
 layerControl.addOverlay(awsLayer, "Wetterstationen Tirol");
 // awsLayer.addTo(map);
 let snowLayer = L.featureGroup();
-layerControl.addOverlay(snowLayer, "Schneehöhen");
-snowLayer.addTo(map);
+layerControl.addOverlay(snowLayer, "Schneehöhen (cm)");
+// snowLayer.addTo(map);
 let windLayer = L.featureGroup();
-layerControl.addOverlay(windLayer, "Windgeschwindigkeit");
+layerControl.addOverlay(windLayer, "Windgeschwindigkeit (km/h)");
 windLayer.addTo(map);
 
 
@@ -75,28 +75,26 @@ fetch(awsUrl)
                 });
                 snowMarker.addTo(snowLayer);
             }
-        }
-    
-        if (station.properties.WG) {
-            let highlightClass = '';
-            if (station.properties.WG > 5) {
-                highlightClass = 'wind-5';
+            if (station.properties.WG) {
+                let windHighlightClass = '';
+                if (station.properties.WG > 10) {
+                    windHighlightClass = 'wind-10';
+                }
+                if (station.properties.WG > 20) {
+                    windHighlightClass = 'wind-20';
+                }
+                let windIcon = L.divIcon({
+                    html: `<div class="wind-label ${windHighlightClass}">${station.properties.WG}</div>`,
+                });
+                let windMarker = L.marker([
+                    station.geometry.coordinates[1],
+                    station.geometry.coordinates[0]
+                ], {
+                    icon: windIcon
+                });
+                windMarker.addTo(windLayer);
             }
-            if (station.properties.WG > 10) {
-                highlightClass = 'wind-10';
-            }
-            let windIcon = L.divIcon({
-                html: `<div class="snow-label ${highlightClass}">${station.properties.WG}</div>`
-            })
-            let windMarker = L.marker([
-                station.geometry.coordinates[1],
-                station.geometry.coordinates[0]
-            ], {
-                icon: windIcon
-            });
-            windMarker.addTo(windLayer);
         }
-    }
         // set map view to all stations
         map.fitBounds(awsLayer.getBounds());
     });
