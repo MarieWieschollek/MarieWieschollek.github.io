@@ -21,8 +21,8 @@ let layerControl = L.control.layers({
 
 let awsUrl = 'https://wiski.tirol.gv.at/lawine/produkte/ogd.geojson';
 
-let awsLayer= L.featureGroup();
-layerControl.addOverlay(awsLayer; "Wetterstationen in Tirol");
+let awsLayer = L.featureGroup();
+layerControl.addOverlay(awsLayer, "Wetterstationen Tirol");
 awsLayer.addTo(map);
 
 fetch(awsUrl)
@@ -30,19 +30,21 @@ fetch(awsUrl)
     .then(json => {
         console.log('Daten konvertiert: ', json);
         for (station of json.features) {
-            console.log('Station: ', station);
-            let marker = L.marker(
-                [station.geometry.coordinates[1],
-                station.geometry.coordinates[0]]
-                );
-                marker.bindPopup(`
-                <h3>${station.properties.name}</h3>
-                <ul>
-<li>Datum: ${station.properties.date}</li>
-<li>Temperatur: ${station.properties.LT} C</li>
-                </ul>
-                `);
+            // console.log('Station: ', station);
+            let marker = L.marker([
+                station.geometry.coordinates[1],
+                station.geometry.coordinates[0]
+            ]);
+            let formattedDate = new Date(station.properties.date);
+            marker.bindPopup(`
+            <h3>${station.properties.name}</h3>
+            <ul>
+              <li>Datum: ${formattedDate.toLocaleString("de")}</li>
+              <li>Temperatur: ${station.properties.LT} C</li>
+            </ul>
+            `);
             marker.addTo(awsLayer);
         }
+        // set map view to all stations
         map.fitBounds(awsLayer.getBounds());
     });
