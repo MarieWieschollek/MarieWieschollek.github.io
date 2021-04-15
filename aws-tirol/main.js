@@ -27,6 +27,9 @@ layerControl.addOverlay(awsLayer, "Wetterstationen Tirol");
 let snowLayer = L.featureGroup();
 layerControl.addOverlay(snowLayer, "Schneehöhen");
 snowLayer.addTo(map);
+let windLayer = L.featureGroup();
+layerControl.addOverlay(windLayer, "Windgeschwindigkeit");
+windLayer.addTo(map);
 
 
 fetch(awsUrl)
@@ -73,6 +76,27 @@ fetch(awsUrl)
                 snowMarker.addTo(snowLayer);
             }
         }
+        marker.addTo(awsLayer);
+        if (station.properties.WG) {
+            let highlightClass = '';
+            if (station.properties.WG > 5) {
+                highlightClass = 'wind-5';
+            }
+            if (station.properties.WG > 10) {
+                highlightClass = 'wind-10';
+            }
+            let windIcon = L.divIcon({
+                html: `<div class="snow-label ${highlightClass}">${station.properties.WG}</div>`
+            })
+            let windMarker = L.marker([
+                station.geometry.coordinates[1],
+                station.geometry.coordinates[0]
+            ], {
+                icon: windIcon
+            });
+            windMarker.addTo(windLayer);
+        }
+    }
         // set map view to all stations
         map.fitBounds(awsLayer.getBounds());
     });
