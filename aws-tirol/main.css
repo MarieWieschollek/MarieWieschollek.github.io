@@ -27,6 +27,8 @@ h2 {
     background-color: blue;
 }
 
-.snow-200, .wind-20, .temp-pos {
+.snow-200, .wind-20 {
     background-color: red;
 }
+.temp-pos {
+    background-color: green;
