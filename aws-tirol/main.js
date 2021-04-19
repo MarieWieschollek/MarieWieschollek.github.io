@@ -31,7 +31,7 @@ let windLayer = L.featureGroup();
 layerControl.addOverlay(windLayer, "Windgeschwindigkeit (km/h)");
 windLayer.addTo(map);
 let tempLayer = L.featureGroup();
-layerControl.addOverlay(tempLayer, "Temperatur (°C)");
+layerControl.addOverlay(tempLayer, "Lufttemperatur (°C)");
 tempLayer.addTo(map);
 
 
