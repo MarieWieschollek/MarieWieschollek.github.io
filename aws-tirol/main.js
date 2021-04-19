@@ -104,7 +104,7 @@ fetch(awsUrl)
                     tempHighlightClass = 'temp-pos';
                 }
                 if (station.properties.LT < 0) {
-                    windHighlightClass = 'temp-neg';
+                    tempHighlightClass = 'temp-neg';
                 }
                 let tempIcon = L.divIcon({
                     html: `<div class="temp-label ${tempHighlightClass}">${station.properties.LT}</div>`,
