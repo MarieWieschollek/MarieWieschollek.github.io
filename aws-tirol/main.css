@@ -23,10 +23,10 @@ h2 {
         -1px -1px 0 white;
 }
 
-.snow-100, .wind-10 {
+.snow-100, .wind-10, .temp-neg {
     background-color: blue;
 }
 
-.snow-200, .wind-20 {
+.snow-200, .wind-20, .temp-pos {
     background-color: red;
 }
