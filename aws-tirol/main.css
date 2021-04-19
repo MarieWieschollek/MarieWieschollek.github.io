@@ -9,7 +9,7 @@ h2 {
     margin: auto;
 }
 
-.snow-label, .wind-label {
+.snow-label, .wind-label, .temp-label {
     font-size: 1.25em;
     font-weight: bold;
     display: inline;
