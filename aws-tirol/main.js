@@ -47,6 +47,10 @@ let layerControl = L.control.layers({
 
     overlays.temperature.addTo(map);
 
+    L.control.scale({
+        imperial: false
+    }).addTo(map);
+
 let awsUrl = 'https://wiski.tirol.gv.at/lawine/produkte/ogd.geojson';
 
 fetch(awsUrl)
