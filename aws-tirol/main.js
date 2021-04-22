@@ -40,8 +40,10 @@ let layerControl = L.control.layers({
     "Windgeschwindigkeit (km/h)": overlays.windspeed,
     "Windrichtung": overlays.winddirection
 
-} 
-    ).addTo(map);
+} , {
+    collapsed: false
+
+}  ).addTo(map);
 
     overlays.temperature.addTo(map);
 
