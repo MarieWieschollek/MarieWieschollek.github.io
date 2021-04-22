@@ -91,12 +91,13 @@ fetch(awsUrl)
             <a target="_blank" href="https://wiski.tirol.gv.at/lawine/grafiken/1100/standard/tag/${station.properties.plot}.png">Grafik</a>
             `);
             marker.addTo(overlays.stations);
+            //Schneehöhe
              if (typeof station.properties.HS == 'number'){
                 let marker = newLabel(station.geometry.coordinates, {
                     value: station.properties.HS
                 });
                 marker.addTo(overlays.snowheight);
-            } 
+            } ;
             
           //Windgeschwindigkeit
             if(typeof station.properties.WG == 'number'){
@@ -104,7 +105,7 @@ fetch(awsUrl)
                     value: station.properties.WG
                 });
                 marker.addTo(overlays.windspeed);
-            }
+            } ;
             
          //Lufttemperatur 
             if(typeof station.properties.LT == 'number'){
