@@ -41,17 +41,25 @@ L.control.scale({
 }).addTo(map);
 
 let getColor = (value, colorRamp) => {
-    console.log("Wert:", value, "Palette:", colorRamp);
+    //console.log("Wert:", value, "Palette:", colorRamp);
+    for (let rule of colorRamp) {
+        if (value >= rule.min && value < rule.max) {
+            return rule.col;
+        }
+    }
+    return "black";
 };
 
 let newLabel = (coords, options) => {
-    let color = getColor(options.value, options.colors)
+    let color = getColor(options.value, options.colors);
+    //console.log("Wert", options.value, "bekommt Farbe", color);
     let label = L.divIcon({
-        html: `<div>${options.value}</div>`,
+        html: `<div style="background-color:${color}">${options.value}</div>`,
         className: "text-label"
     })
     let marker = L.marker([coords[1], coords[0]], {
-        icon: label
+        icon: label,
+        title: `${options.station} (${coords[2]}m)`
     });
     return marker;
 };
@@ -83,22 +91,25 @@ fetch(awsUrl)
             marker.addTo(overlays.stations);
             if (typeof station.properties.HS == "number") {
                 let marker = newLabel(station.geometry.coordinates, {
-                    value: station.properties.HS,
-                    colors: COLORS.snowheight
+                    value: station.properties.HS.toFixed(0),
+                    colors: COLORS.snowheight,
+                    station: station.properties.name
                 });
                 marker.addTo(overlays.snowheight);
             }
             if (typeof station.properties.WG == "number") {
                 let marker = newLabel(station.geometry.coordinates, {
-                    value: station.properties.WG,
-                    colors: COLORS.windspeed
+                    value: station.properties.WG.toFixed(0),
+                    colors: COLORS.windspeed,
+                    station: station.properties.name
                 });
                 marker.addTo(overlays.windspeed);
             }
             if (typeof station.properties.LT == "number") {
                 let marker = newLabel(station.geometry.coordinates, {
-                    value: station.properties.LT,
-                    colors: COLORS.temperature
+                    value: station.properties.LT.toFixed(1),
+                    colors: COLORS.temperature,
+                    station: station.properties.name
                 });
                 marker.addTo(overlays.temperature);
             }
