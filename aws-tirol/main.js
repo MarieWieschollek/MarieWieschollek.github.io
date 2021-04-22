@@ -51,6 +51,14 @@ let layerControl = L.control.layers({
         imperial: false
     }).addTo(map);
 
+    let newLabel = (coords, options) => {
+        console.log("Koordinaten coords: ", coords);
+        console.log("Optionsobjekt:", options);
+        let marker = L.marker([coords[1], coords[0]]);
+        console.log("Marker:", marker);
+        return marker;
+    };
+
 let awsUrl = 'https://wiski.tirol.gv.at/lawine/produkte/ogd.geojson';
 
 fetch(awsUrl)
@@ -122,28 +130,15 @@ fetch(awsUrl)
             }
 
             if (typeof station.properties.LT == "number") {
-                let tempHighlightClass = '';
-                if (station.properties.LT >= 0) {
-                    tempHighlightClass = 'temp-pos';
-                }
-                if (station.properties.LT < 0) {
-                    tempHighlightClass = 'temp-neg';
-                }
-                // https://leafletjs.com/reference-1.7.1.html#divicon
-                let tempIcon = L.divIcon({
-                    html: `<div class="temp-label ${tempHighlightClass}">${station.properties.LT}</div>`,
+                let marker = newLabel(station.geometry.coordinates, {
+                    value: station.properties.LT
                 });
-                //https://leafletjs.com/reference-1.7.1.html#marker
-                let tempMarker = L.marker([
-                    station.geometry.coordinates[1],
-                    station.geometry.coordinates[0]
-                ], {
-                    icon: tempIcon
-                });
-                tempMarker.addTo(overlays.temperature);
+                marker.addTo(overlays.temperature);
             }
-
         }
         // set map view to all stations
         map.fitBounds(overlays.stations.getBounds());
     });
+
+   
+   
