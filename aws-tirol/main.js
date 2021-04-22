@@ -10,7 +10,7 @@ let map = L.map("map", {
     ]
 });
 
-let addoverlays = {
+let overlays = {
     stations: L.featureGroup(),
     temperature: L.featureGroup(),
     snowheight: L.featureGroup(),
