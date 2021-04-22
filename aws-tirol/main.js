@@ -15,7 +15,7 @@ let addoverlays = {
     temperature: L.featureGroup(),
     snowheight: L.featureGroup(),
     windspeed: L.featureGroup(),
-    winddirection: L.featureGroup(),
+    winddirection: L.featureGroup()
 };
 
 
