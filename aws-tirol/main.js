@@ -113,7 +113,7 @@ fetch(awsUrl)
                     value: station.properties.LT
                 });
                 marker.addTo(overlays.temperature);
-            }
+            } ;
         // set map view to all stations
         map.fitBounds(overlays.stations.getBounds());
     });
