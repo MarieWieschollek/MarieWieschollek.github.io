@@ -63,7 +63,7 @@ let layerControl = L.control.layers({
         return marker;
     };
 
-    
+
 let awsUrl = 'https://wiski.tirol.gv.at/lawine/produkte/ogd.geojson';
 
 fetch(awsUrl)
@@ -91,56 +91,28 @@ fetch(awsUrl)
             <a target="_blank" href="https://wiski.tirol.gv.at/lawine/grafiken/1100/standard/tag/${station.properties.plot}.png">Grafik</a>
             `);
             marker.addTo(overlays.stations);
-            if (typeof station.properties.HS == "number") {
-                let highlightClass = '';
-                if (station.properties.HS > 100) {
-                    highlightClass = 'snow-100';
-                }
-                if (station.properties.HS > 200) {
-                    highlightClass = 'snow-200';
-                }
-                // https://leafletjs.com/reference-1.7.1.html#divicon
-                let snowIcon = L.divIcon({
-                    html: `<div class="snow-label ${highlightClass}">${station.properties.HS}</div>`
-                })
-                //https://leafletjs.com/reference-1.7.1.html#marker
-                let snowMarker = L.marker([
-                    station.geometry.coordinates[1],
-                    station.geometry.coordinates[0]
-                ], {
-                    icon: snowIcon
+             if (typeof station.properties.HS == 'number'){
+                let marker = newLabel(station.geometry.coordinates, {
+                    value: station.properties.HS
                 });
-                snowMarker.addTo(overlays.snowheight);
+                marker.addTo(overlays.snowheight);
+            } 
+            
+          //Windgeschwindigkeit
+            if(typeof station.properties.WG == 'number'){
+                let marker = newLabel(station.geometry.coordinates, {
+                    value: station.properties.WG
+                });
+                marker.addTo(overlays.windspeed);
             }
-            if (typeof station.properties.WG == "number") {
-                let windHighlightClass = '';
-                if (station.properties.WG > 10) {
-                    windHighlightClass = 'wind-10';
-                }
-                if (station.properties.WG > 20) {
-                    windHighlightClass = 'wind-20';
-                }
-                // https://leafletjs.com/reference-1.7.1.html#divicon
-                let windIcon = L.divIcon({
-                    html: `<div class="wind-label ${windHighlightClass}">${station.properties.WG}</div>`,
-                });
-                //https://leafletjs.com/reference-1.7.1.html#marker
-                let windMarker = L.marker([
-                    station.geometry.coordinates[1],
-                    station.geometry.coordinates[0]
-                ], {
-                    icon: windIcon
-                });
-                windMarker.addTo(overlays.windspeed);
-            }
-
-            if (typeof station.properties.LT == "number") {
+            
+         //Lufttemperatur 
+            if(typeof station.properties.LT == 'number'){
                 let marker = newLabel(station.geometry.coordinates, {
                     value: station.properties.LT
                 });
                 marker.addTo(overlays.temperature);
             }
-        }
         // set map view to all stations
         map.fitBounds(overlays.stations.getBounds());
     });
