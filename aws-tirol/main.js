@@ -124,6 +124,14 @@ fetch(awsUrl)
                 });
                 marker.addTo(overlays.humidity);
             }
+            if (typeof station.properties.WR == "number") {
+                let marker = newLabel(station.geometry.coordinates, {
+                    value: station.properties.WR.toFixed(0),
+                    colors: COLORS.winddirection,
+                    station: station.properties.name
+                });
+                marker.addTo(overlays.winddirection);
+            }
         }
         // set map view to all stations
         map.fitBounds(overlays.stations.getBounds());
