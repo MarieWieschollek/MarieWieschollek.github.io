@@ -51,9 +51,9 @@ let getColor = (value, colorRamp) => {
     }
     return "black";
 };
-    let getDirection = (value, colorRamp) => {
+    let getDirection = (value, directionRamp) => {
         //console.log("Wert:", value, "Palette:", colorRamp);
-        for (let rule of colorRamp) {
+        for (let rule of directionRamp) {
             if (value >= rule.min && value < rule.max) {
                 return rule.dir;
             }
@@ -136,8 +136,8 @@ fetch(awsUrl)
             }
             if (typeof station.properties.WR == "number") {
                 let marker = newLabel(station.geometry.coordinates, {
-                    value: getDirection(station.properties.WR), DIRECTIONS,
-                    colors: DIRECTIONS,
+                    value: getDirection(station.properties.WR, DIRECTIONS),
+                    colors: COLORS.directions,
                     station: station.properties.name
                 });
                 marker.addTo(overlays.winddirection);
