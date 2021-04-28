@@ -63,7 +63,6 @@ let getColor = (value, colorRamp) => {
 
 let newLabel = (coords, options) => {
     let color = getColor(options.value, options.colors);
-    let direction = getDirection(options.value, options.directions);
     //console.log("Wert", options.value, "bekommt Farbe", color);
     let label = L.divIcon({
         html: `<div style="background-color:${color}">${options.value}</div>`,
@@ -137,7 +136,7 @@ fetch(awsUrl)
             if (typeof station.properties.WR == "number") {
                 let marker = newLabel(station.geometry.coordinates, {
                     value: getDirection(station.properties.WR, DIRECTIONS),
-                    colors: COLORS.directions,
+                    colors: COLORS.winddirection,
                     station: station.properties.name
                 });
                 marker.addTo(overlays.winddirection);
