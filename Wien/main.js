@@ -62,7 +62,7 @@ let drawBusStop = (geojsonData) => {
             return L.marker(latlng, {
                 icon: L.icon({
                     iconUrl: 'icons/busstop.png',
-                    iconSize: [38, 38]
+                    iconSize: [30, 30]
                 })
             })
         },
@@ -84,21 +84,22 @@ let drawBusLines = (geojsonData) => {
             <hr>
             von ${feature.properties.FROM_NAME}<br>
             nach ${feature.properties.TO_NAME}`)
-        }
+        },
     }).addTo(overlays.busLines);
 }
 let drawSigPoints = (geojsonData) => {
+    console.log('Sehenswürdigkeiten: ', geojsonData);
     L.geoJson(geojsonData, {
         onEachFeature: (feature, layer) => {
             layer.bindPopup(`<strong>${feature.properties.NAME}</strong>
             <hr>
-            Sehenswürdigkeiten: ${feature.properties.ARESSE}`)
+            Sehenswürdigkeiten: ${feature.properties.NAME}`)
         },
         pointToLayer: (geoJsonPoint, latlng) => {
             return L.marker(latlng, {
                 icon: L.icon({
                     iconUrl: 'icons/you-are-here-2.png',
-                    iconSize: [38, 38]
+                    iconSize: [30, 30]
                 })
             })
         },
