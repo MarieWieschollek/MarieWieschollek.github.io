@@ -17,7 +17,8 @@ let baselayers = {
 let overlays = {
     busLines: L.featureGroup(),
     busStops: L.featureGroup(),
-    pedAreas: L.featureGroup()
+    pedAreas: L.featureGroup(),
+    sigPoints: L.featureGroup()
 };
 
 // Karte initialisieren und auf Wiens Wikipedia Koordinate blicken
@@ -40,13 +41,15 @@ let layerControl = L.control.layers({
 }, {
     "Liniennetz Vienna Sightseeing": overlays.busLines,
     "Haltestellen Vienna Sightseeing": overlays.busStops,
-    "Fußgängerzonen": overlays.pedAreas
+    "Fußgängerzonen": overlays.pedAreas,
+    "Sehenswürdigkeiten": overlays.sigPoints
 }).addTo(map);
 
 // alle Overlays nach dem Laden anzeigen
 overlays.busLines.addTo(map);
 overlays.busStops.addTo(map);
 overlays.pedAreas.addTo(map);
+overlays.sigPoints.addTo(map);
 
 let drawBusStop = (geojsonData) => {
     L.geoJson(geojsonData, {
@@ -84,6 +87,23 @@ let drawBusLines = (geojsonData) => {
         }
     }).addTo(overlays.busLines);
 }
+let drawSigPoints = (geojsonData) => {
+    L.geoJson(geojsonData, {
+        onEachFeature: (feature, layer) => {
+            layer.bindPopup(`<strong>${feature.properties.NAME}</strong>
+            <hr>
+            Sehenswürdigkeit: ${feature.properties.NAME}`)
+        },
+        pointToLayer: (geoJsonPoint, latlng) => {
+            return L.marker(latlng, {
+                icon: L.icon({
+                    iconUrl: 'icons/you-are-here-2.png',
+                    iconSize: [38, 38]
+                })
+            })
+        },
+        attribution: '<a href="https://data.wien.gv.at">Stadt Wien</a>, <a href="https://mapicons.mapsmarker.com">Maps Icons Collection</a>'
+    }).addTo(overlays.sigPoints);
 
 let drawPedestrianAreas = (geojsonData) => {
     console.log('Zone: ', geojsonData);
@@ -116,6 +136,9 @@ for (let config of OGDWIEN) {
                 drawBusLines(geojsonData);
             } else if (config.title === "Fußgängerzonen") {
                 drawPedestrianAreas(geojsonData);
+            } else if (config.title === "Sehenswürdigkeiten") {
+                    drawSigPoints(geojsonData);
+                }
             }
         })
 }
