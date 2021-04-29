@@ -92,7 +92,7 @@ let drawSigPoints = (geojsonData) => {
         onEachFeature: (feature, layer) => {
             layer.bindPopup(`<strong>${feature.properties.NAME}</strong>
             <hr>
-            Sehenswürdigkeit: ${feature.properties.ARESSE}`)
+            Sehenswürdigkeiten: ${feature.properties.ARESSE}`)
         },
         pointToLayer: (geoJsonPoint, latlng) => {
             return L.marker(latlng, {
