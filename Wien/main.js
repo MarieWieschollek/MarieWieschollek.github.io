@@ -97,8 +97,8 @@ let drawPedestrianAreas = (geojsonData) => {
         onEachFeature: (feature, layer) => {
             layer.bindPopup(`<strong>Fußgängerzone ${feature.properties.ADRESSE}</strong>
             <hr>
-            ${feature.properties.ZEITRAUM} <br>
-            ${feature.properties.AUSN_TEXT}
+            ${feature.properties.ZEITRAUM || ""} <br>
+            ${feature.properties.AUSN_TEXT|| ""}
             `);
         }
     }).addTo(overlays.pedAreas);
