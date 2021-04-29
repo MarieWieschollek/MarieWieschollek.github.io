@@ -140,5 +140,4 @@ for (let config of OGDWIEN) {
                     drawSigPoints(geojsonData);
                 }
             }
-        })
-}
+       })
