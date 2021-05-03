@@ -96,7 +96,7 @@ fetch(awsUrl)
                 station.geometry.coordinates[0]
             ]);
             let formattedDate = new Date(station.properties.date);
-            // Popup für die Windrichtung 
+            // Popup für Windrichtung 
             let WindrichtungPopup = getDirection(station.properties.WR, DIRECTIONS);
             marker.bindPopup(`
             <h3>${station.properties.name}</h3>
