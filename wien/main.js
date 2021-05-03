@@ -124,7 +124,7 @@ let drawPedestrianAreas = (geojsonData) => {
         }
     }).addTo(overlays.pedAreas);
 }
-//Versuch
+
 for (let config of OGDWIEN) {
     // console.log("Config: ", config.data);
     fetch(config.data)
