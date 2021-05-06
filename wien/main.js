@@ -168,6 +168,19 @@ var miniMap = new L.Control.MiniMap(
 
 let styleIntervals = (feature) => { 
 console.log(feature.properties);
+console.log(feature.properties.Measure)
+let color = "";
+let range = feature.properties.Range;
+if (feature.properties.Measure === "time") { 
+    color = COLORS.minutes[range];
+} else if (feature.properties.Measure === "distance") { 
+    color = COLORS.kilometers[range]; }
+    else { color ="black" }
+    return {
+        color: color,
+        opacity: 0.5,
+        fillOpacity: 0.2
+    };
 };
 
 L.control.reachability({
