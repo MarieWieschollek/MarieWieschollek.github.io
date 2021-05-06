@@ -113,7 +113,7 @@ let drawPedestrianAreas = (geojsonData) => {
     }).addTo(overlays.pedAreas);
 }
 
-let drawSites = (geojsonData) => {
+let drawSights = (geojsonData) => {
     L.geoJson(geojsonData, {
         onEachFeature: (feature, layer) => {
             layer.bindPopup(`
@@ -128,11 +128,11 @@ let drawSites = (geojsonData) => {
             return L.marker(latlng, {
                 icon: L.icon({
                     iconUrl: 'icons/you-are-here-2.png',
-                    iconSize: [32, 32]
+                    iconSize: [30, 30]
                 })
             })
         },
-        attribution: '<a href="https://data.wien.gv.at">Stadt Wien</a>'
+        attribution: '<a href="https://data.wien.gv.at">Stadt Wien</a>, <a href="https://mapicons.mapsmarker.com">Maps Icons Collection</a>'
     }).addTo(overlays.sights);
 }
 for (let config of OGDWIEN) {
@@ -147,8 +147,8 @@ for (let config of OGDWIEN) {
                 drawBusLines(geojsonData);
             } else if (config.title === "Fußgängerzonen") {
                 drawPedestrianAreas(geojsonData);
-            } else if (config.title === "Sehenswürdigkeiten Standorte") {
-                drawSites(geojsonData);
+            } else if (config.title === "Sehenswürdigkeiten") {
+                drawSights(geojsonData);
             }
         })
 }
