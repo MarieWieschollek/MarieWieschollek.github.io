@@ -127,7 +127,7 @@ let drawSites = (geojsonData) => {
         pointToLayer: (geoJsonPoint, latlng) => {
             return L.marker(latlng, {
                 icon: L.icon({
-                    iconUrl: 'icons/sehenswuerdigogd.png',
+                    iconUrl: 'icons/you-are-here-2.png',
                     iconSize: [32, 32]
                 })
             })
