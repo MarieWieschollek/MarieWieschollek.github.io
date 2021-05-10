@@ -46,6 +46,15 @@ if(entry.nr == 12) {
     mrk.openPopup();
 }}
 
+// Minimap
+var miniMap = new L.Control.MiniMap(
+    L.tileLayer.provider("BasemapAT.basemap"), {
+        toggleDisplay: true,
+        minimized: false
+    }
+).addTo(map);
+
+
 nav.options.selectedIndex = 12 - 1;
 nav.onchange = (evt) => {
     let selected = evt.target.selectedIndex;
