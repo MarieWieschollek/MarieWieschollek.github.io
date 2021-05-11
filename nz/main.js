@@ -13,6 +13,7 @@ wikipedia: "https://en.wikipedia.org/wiki/Queenstown,_New_Zealand",
 const map = L.map("map", { 
     //center: [ stop.lat, stop.lng ],
     //zoom: 13,
+    fullscreenControl: true,
     layers: [ 
         L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png")
      ]
@@ -47,12 +48,10 @@ if(entry.nr == 12) {
 }}
 
 // Minimap
-var miniMap = new L.Control.MiniMap(
-    L.tileLayer.provider("BasemapAT.basemap"), {
-        toggleDisplay: true,
-        minimized: false
-    }
-).addTo(map);
+var miniMap = new L.Control.MiniMap(L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"), {
+    toggleDisplay: true,
+    minimized: false
+}).addTo(map);
 
 
 nav.options.selectedIndex = 12 - 1;
