@@ -3,6 +3,7 @@ let basemapGray = L.tileLayer.provider('BasemapAT.grau');
 let map = L.map("map", {
     center: [47, 11],
     zoom: 9,
+    fullscreenControl: true,
     layers: [
         basemapGray
     ]
@@ -41,6 +42,14 @@ overlays.stations.addTo(map);
 L.control.scale({
     imperial: false
 }).addTo(map);
+
+// Minimap
+var miniMap = new L.Control.MiniMap(
+    L.tileLayer.provider("BasemapAT.basemap"), {
+        toggleDisplay: true,
+        minimized: false
+    }
+).addTo(map);
 
 let getColor = (value, colorRamp) => {
     //console.log("Wert:", value, "Palette:", colorRamp);
