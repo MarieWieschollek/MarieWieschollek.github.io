@@ -42,25 +42,30 @@ let layerControl = L.control.layers({
 // Overlay mit GPX-Track anzeigen
 overlays.tracks.addTo(map);
 
-const drawTrack =(nr) => {
-console.log('Track: ', nr);
-let gpxTrack = new L.GPX(`tracks/${nr}.gpx`, {
-    async: true,
-    marker_options: {
-        startIconUrl: `icons/number_${nr}.png`,
-        endIconUrl: 'icons/finish.png',
-        shadowUrl: null,
-      },
-      polyline_options: { 
-          color: 'black',
-          dashArray: [2, 5],
-      },
+const elevationControl = L.control.elevation({
+    elevationDiv: "#profile",
+    followMarker: false,
+}).addTo(map);
 
-}).addTo(overlays.tracks);
-gpxTrack.on("loaded", () => { 
-    console.log('loaded gpx');
-    map.fitBounds(gpxTrack.getBounds());
-    console.log('Track name: ', gpxTrack.get_distance());
+const drawTrack = (nr) => {
+    console.log('Track: ', nr);
+    let gpxTrack = new L.GPX(`tracks/${nr}.gpx`, {
+        async: true,
+        marker_options: {
+            startIconUrl: `icons/number_${nr}.png`,
+            endIconUrl: 'icons/finish.png',
+            shadowUrl: null,
+        },
+        polyline_options: {
+            color: 'black',
+            dashArray: [2, 5],
+        },
+
+    }).addTo(overlays.tracks);
+    gpxTrack.on("loaded", () => {
+        console.log('loaded gpx');
+        map.fitBounds(gpxTrack.getBounds());
+        console.log('Track name: ', gpxTrack.get_distance());
         gpxTrack.bindPopup(`
         <h3>${gpxTrack.get_name()}</h3>
         <ul>
@@ -74,6 +79,8 @@ gpxTrack.on("loaded", () => {
         // TODO: popup with
         // Name, max_height, min_height, total_dist
     });
+
+    elevationControl.load(`tracks/${nr}.gpx`);
 };
 const selectedTrack = 3;
 drawTrack(selectedTrack);
