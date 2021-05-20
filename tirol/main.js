@@ -85,3 +85,10 @@ const drawTrack = (nr) => {
 };
 const selectedTrack = 3;
 drawTrack(selectedTrack);
+
+console.log('biketirol json: ', BIKETIROL);
+let pulldown =document.querySelector("#pulldown");
+for(let track of BIKETIROL) {
+//console.log(track);
+pulldown.innerHTML += `<option value="${track.nr}"> ${track.nr}: ${track.etappe}  </option>`;
+}
