@@ -60,8 +60,20 @@ let gpxTrack = new L.GPX(`tracks/${nr}.gpx`, {
 gpxTrack.on("loaded", () => { 
     console.log('loaded gpx');
     map.fitBounds(gpxTrack.getBounds());
-});
-// Popups max Höhe, min Höhe, total distance des Trails 
+    console.log('Track name: ', gpxTrack.get_distance());
+        gpxTrack.bindPopup(`
+        <h3>${gpxTrack.get_name()}</h3>
+        <ul>
+            <li>Streckenlänge: ${gpxTrack.get_distance()} m</li>
+            <li>tiefster Punkt: ${gpxTrack.get_elevation_min()} m</li>
+            <li>höchster Punkt: ${gpxTrack.get_elevation_max()} m</li>
+            <li>Höhenmeter bergauf: ${gpxTrack.get_elevation_gain()} m</li>
+            <li>Höhenmeter bergab: ${gpxTrack.get_elevation_loss()} m</li>
+        </ul>
+        `);
+        // TODO: popup with
+        // Name, max_height, min_height, total_dist
+    });
 };
 const selectedTrack = 3;
 drawTrack(selectedTrack);
