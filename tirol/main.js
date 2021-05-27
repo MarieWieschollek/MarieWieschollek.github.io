@@ -176,7 +176,7 @@ drawTrack(selectedTrack);
 const updateTexts = (nr) => {
     console.log(nr);
     for(let article of BIKETIROL){
-        console.log(etappe);
+       // console.log(etappe);
         //ist das die aktuell etappe?
         if (etappe.nr == nr) {
             //console.log("unsere Etappe", etappe);
