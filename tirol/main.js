@@ -50,6 +50,12 @@ const elevationControl = L.control.elevation({
     followMarker: false,
     theme: 'lime-theme',
 }).addTo(map);
+//wikipedia artikel zeichnen 
+const drawWikipedia = (bounds) => {
+    console.log(bounds);
+    let url =`https://secure.geonames.org/wikipediaBoundingBoxJSON?&north=${bounds.getNorth()}&south=${bounds.getSouth()}&east=${bounds.getEast()}&west=${bounds.getWest()}&username=MarieWieschollek&lang=de&maxRows=30`;
+    console.log(url);
+};
 
 const drawTrack = (nr) => {
     //console.log('Track: ', nr);
@@ -82,6 +88,9 @@ const drawTrack = (nr) => {
             <li>Höhenmeter bergab: ${gpxTrack.get_elevation_loss()} m</li>
         </ul>
         `);
+        //Aufruf wikipedia zeichnen 
+
+        drawWikipedia(gpxTrack.getBounds());
         // TODO: popup with
         // Name, max_height, min_height, total_dist
     });
