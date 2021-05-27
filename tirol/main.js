@@ -51,9 +51,7 @@ const elevationControl = L.control.elevation({
     theme: 'lime-theme',
 }).addTo(map);
 //wikipedia artikel zeichnen 
-let articleDrawn = {
-
-}
+let articleDrawn = {};
 const drawWikipedia = (bounds) => {
 console.log(bounds);
 let url = `https://secure.geonames.org/wikipediaBoundingBoxJSON?north=${bounds.getNorth()}&south=${bounds.getSouth()}&east=${bounds.getEast()}&west=${bounds.getWest()}&username=MarieWieschollek&lang=de&maxRows=30`;
