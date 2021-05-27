@@ -55,6 +55,12 @@ const drawWikipedia = (bounds) => {
     console.log(bounds);
     let url =`https://secure.geonames.org/wikipediaBoundingBoxJSON?&north=${bounds.getNorth()}&south=${bounds.getSouth()}&east=${bounds.getEast()}&west=${bounds.getWest()}&username=MarieWieschollek&lang=de&maxRows=30`;
     console.log(url);
+
+    fetch(url).then(
+        response => response.json()
+    ).then(jsonData => {
+        console.log(jsonData)
+     });
 };
 
 const drawTrack = (nr) => {
