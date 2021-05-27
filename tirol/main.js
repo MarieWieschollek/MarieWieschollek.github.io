@@ -178,8 +178,8 @@ const updateTexts = (nr) => {
     for(let article of BIKETIROL){
         console.log(etappe);
         //ist das die aktuell etappe?
-        if(etappe.nr== nr) {
-            console.log("unsere etappe", etappe);
+        if (etappe.nr == nr) {
+            //console.log("unsere Etappe", etappe);
             for (let key in etappe) {
                 console.log("key:", key, "value:", etappe[key]);
                 //console.log("key:", key, "value:", etappe[key]);
