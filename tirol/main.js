@@ -180,12 +180,13 @@ const updateTexts = (nr) => {
         //ist das die aktuell etappe?
         if(etappe.nr== nr) {
             console.log("unsere etappe", etappe);
-            for (let key in etappe){
+            for (let key in etappe) {
                 console.log("key:", key, "value:", etappe[key]);
-                //gibt es 
-                if (doument.querySelector(`#${key}`)){
-                    console.log("Juhu", key, etappe[key]);
-                    document.querySelector(`#${key}`).innerHTML =etappe[key];
+                //console.log("key:", key, "value:", etappe[key]);
+                // gibt es ein Element im HTML mit der ID von "key"
+                if (document.querySelector(`#text-${key}`)) {
+                    //console.log("Juhu", key, etappe[key]);
+                    document.querySelector(`#text-${key}`).innerHTML = etappe[key];
                 }
             }
         }
