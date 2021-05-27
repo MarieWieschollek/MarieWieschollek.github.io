@@ -174,14 +174,14 @@ const selectedTrack = 3;
 drawTrack(selectedTrack);
 
 const updateTexts = (nr) => {
-    console.log(nr);
-    for(let article of BIKETIROL){
-       // console.log(etappe);
-        //ist das die aktuell etappe?
+    //console.log(nr);
+    for (let etappe of BIKETIROL) {
+        //console.log(etappe);
+        // ist es die aktuelle Etappe?
         if (etappe.nr == nr) {
             //console.log("unsere Etappe", etappe);
+            etappe.homepage = `<a href="${etappe.weblink}">Homepage</a>`;
             for (let key in etappe) {
-               // console.log("key:", key, "value:", etappe[key]);
                 //console.log("key:", key, "value:", etappe[key]);
                 // gibt es ein Element im HTML mit der ID von "key"
                 if (document.querySelector(`#text-${key}`)) {
@@ -193,7 +193,7 @@ const updateTexts = (nr) => {
     }
 };
 
-//console.log('biketirol json: ', BIKETIROL);
+// console.log('biketirol json: ', BIKETIROL);
 let pulldown = document.querySelector("#pulldown");
 
 //console.log('Pulldown: ', pulldown);
